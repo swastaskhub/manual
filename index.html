@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Business Hub — User Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #1a1a1a;
+      --ink-soft:   #4a4a4a;
+      --ink-faint:  #888888;
+      --bg:         #2b2b2b;
+      --surface:    #333333;
+      --border:     #444444;
+      --accent:     #f5c800;
+      --accent-mid: #f7d340;
+      --accent-bg:  #3a3500;
+      --green:      #22c55e;
+      --green-bg:   #0f2a1a;
+      --red:        #f87171;
+      --red-bg:     #2a0f0f;
+      --amber:      #f5c800;
+      --amber-bg:   #3a3500;
+      --radius:     12px;
+      --sidebar-w:  260px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: #e8e8e8;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    /* ── TOP NAV ── */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 60px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+      padding: 0 24px;
+      gap: 16px;
+    }
+    .topbar-logo {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: 17px;
+      color: var(--accent);
+      letter-spacing: -0.3px;
+    }
+    .topbar-logo span { color: var(--green); }
+    .topbar-badge {
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--accent-bg);
+      color: var(--accent);
+      padding: 2px 8px;
+      border-radius: 20px;
+      letter-spacing: 0.3px;
+    }
+    .topbar-right {
+      margin-left: auto;
+      display: flex; gap: 10px; align-items: center;
+    }
+    .btn-outline {
+      font-size: 13px; font-weight: 500;
+      color: #b0b0b0;
+      border: 1px solid var(--border);
+      background: none;
+      padding: 5px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-color .15s, color .15s;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-primary {
+      font-size: 13px; font-weight: 700;
+      background: var(--accent); color: #1a1a1a;
+      border: none; padding: 6px 16px;
+      border-radius: 8px; cursor: pointer;
+      text-decoration: none;
+      transition: background .15s;
+    }
+    .btn-primary:hover { background: #d4aa00; }
+
+    /* ── LAYOUT ── */
+    .layout { display: flex; min-height: 100vh; padding-top: 60px; }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      position: fixed;
+      top: 60px; left: 0; bottom: 0;
+      width: var(--sidebar-w);
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      padding: 24px 0 40px;
+    }
+    .sidebar-section-label {
+      font-size: 10px; font-weight: 700;
+      color: var(--ink-faint);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 0 20px 8px;
+      margin-top: 20px;
+    }
+    .sidebar-section-label:first-child { margin-top: 0; }
+    .sidebar a {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 20px;
+      font-size: 13.5px; font-weight: 500;
+      color: #b0b0b0;
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      transition: background .12s, color .12s, border-color .12s;
+    }
+    .sidebar a:hover { background: #3a3a3a; color: #e8e8e8; }
+    .sidebar a.active { background: var(--accent-bg); color: var(--accent); border-left-color: var(--accent); }
+    .sidebar a .num {
+      font-size: 11px; font-weight: 700;
+      color: #888888;
+      min-width: 18px;
+    }
+    .sidebar a.active .num { color: var(--accent); }
+
+    /* ── MAIN ── */
+    .main {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      max-width: 860px;
+      padding: 48px 56px 100px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2b2b2b 50%, #333333 100%);
+      border: 1px solid #f5c800;
+      border-radius: var(--radius);
+      padding: 56px 48px;
+      color: #fff;
+      margin-bottom: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: -60px; top: -60px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.06);
+    }
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .hero h1 {
+      font-family: 'Sora', sans-serif;
+      font-size: 36px; font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      margin-bottom: 14px;
+      color: #ffffff;
+    }
+    .hero p {
+      font-size: 16px; color: rgba(255,255,255,.75);
+      max-width: 520px;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .hero-meta {
+      display: flex; gap: 24px; flex-wrap: wrap;
+    }
+    .hero-meta-item {
+      font-size: 12.5px; font-weight: 500;
+      color: rgba(255,255,255,.6);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .hero-meta-item svg { opacity: .7; }
+
+    /* ── SECTION ── */
+    .section {
+      margin-bottom: 60px;
+      scroll-margin-top: 84px;
+    }
+    .section-header {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-number {
+      font-family: 'Sora', sans-serif;
+      font-size: 12px; font-weight: 700;
+      color: #1a1a1a;
+      background: var(--accent);
+      border-radius: 8px;
+      padding: 4px 10px;
+      letter-spacing: 0.3px;
+    }
+    .section h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: 22px; font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.3px;
+    }
+    .section p { color: #b0b0b0; margin-bottom: 16px; }
+    .section p:last-child { margin-bottom: 0; }
+
+    /* ── STEPS ── */
+    .steps { display: flex; flex-direction: column; gap: 4px; margin: 20px 0; }
+    .step {
+      display: flex; gap: 16px;
+      align-items: flex-start;
+      padding: 14px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    .step-num {
+      min-width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #1a1a1a;
+      font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-body { font-size: 14px; color: #b0b0b0; padding-top: 4px; line-height: 1.6; }
+    .step-body strong { color: #e8e8e8; font-weight: 600; }
+
+    /* ── BULLETS ── */
+    .bullet-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin: 16px 0; }
+    .bullet-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14px; color: #b0b0b0; line-height: 1.6;
+    }
+    .bullet-list li::before {
+      content: '';
+      min-width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent-mid);
+      margin-top: 8px;
+    }
+
+    /* ── CALLOUT ── */
+    .callout {
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 20px 0;
+      display: flex; gap: 14px; align-items: flex-start;
+      font-size: 14px; line-height: 1.6;
+    }
+    .callout.info { background: #2a2800; border-left: 3px solid var(--accent); color: #f5c800; }
+    .callout.warning { background: #2a2800; border-left: 3px solid #f5c800; color: #f5c800; }
+    .callout.danger { background: #2a0f0f; border-left: 3px solid #f87171; color: #f87171; }
+    .callout-icon { font-size: 16px; margin-top: 1px; flex-shrink: 0; }
+
+    /* ── DO / DON'T TABLE ── */
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .checklist-card {
+      border-radius: 10px;
+      padding: 18px 20px;
+      border: 1px solid var(--border);
+    }
+    .checklist-card.do { background: var(--green-bg); border-color: #166534; }
+    .checklist-card.dont { background: var(--red-bg); border-color: #7f1d1d; }
+    .checklist-card-title {
+      font-size: 12px; font-weight: 700; letter-spacing: .8px;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .checklist-card.do .checklist-card-title { color: var(--green); }
+    .checklist-card.dont .checklist-card-title { color: #f87171; }
+    .checklist-item {
+      display: flex; gap: 8px; align-items: flex-start;
+      font-size: 13.5px; line-height: 1.5;
+      margin-bottom: 8px;
+    }
+    .checklist-item:last-child { margin-bottom: 0; }
+    .checklist-card.do .checklist-item { color: #86efac; }
+    .checklist-card.dont .checklist-item { color: #fca5a5; }
+    .check-icon { flex-shrink: 0; font-size: 14px; margin-top: 1px; }
+
+    /* ── STATUS BADGES ── */
+    .status-cards { display: flex; gap: 12px; margin: 16px 0; flex-wrap: wrap; }
+    .status-card {
+      flex: 1; min-width: 140px;
+      border-radius: 10px; padding: 16px 18px;
+      border: 1px solid var(--border);
+    }
+    .status-card .badge {
+      display: inline-block;
+      font-size: 11px; font-weight: 700; letter-spacing: .5px;
+      text-transform: uppercase;
+      padding: 2px 8px; border-radius: 20px;
+      margin-bottom: 8px;
+    }
+    .status-card.approved .badge { background: var(--green-bg); color: var(--green); }
+    .status-card.rejected .badge { background: var(--red-bg); color: #f87171; }
+    .status-card.pending .badge { background: var(--amber-bg); color: var(--amber); }
+    .status-card p { font-size: 13px; color: #b0b0b0; margin: 0; line-height: 1.5; }
+
+    /* ── FAQ ── */
+    .faq { display: flex; flex-direction: column; gap: 8px; margin: 16px 0; }
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .faq-q {
+      padding: 16px 20px;
+      font-size: 14px; font-weight: 600;
+      color: #e8e8e8;
+      cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      user-select: none;
+      background: var(--surface);
+    }
+    .faq-q:hover { background: var(--bg); }
+    .faq-q .arrow { transition: transform .2s; font-size: 12px; color: var(--ink-faint); }
+    .faq-item.open .faq-q .arrow { transform: rotate(180deg); }
+    .faq-a {
+      display: none;
+      padding: 0 20px 16px;
+      font-size: 14px; color: #b0b0b0; line-height: 1.65;
+      background: var(--surface);
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── DELAYS LIST ── */
+    .delay-list { display: flex; flex-direction: column; gap: 6px; margin: 16px 0; }
+    .delay-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 11px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 13.5px; color: #b0b0b0;
+    }
+    .delay-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0;
+    }
+
+    /* ── EARNINGS GRID ── */
+    .earnings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+    .earning-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+    }
+    .earning-card-label { font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 4px; }
+    .earning-card-title { font-size: 15px; font-weight: 600; color: #e8e8e8; margin-bottom: 4px; }
+    .earning-card-desc { font-size: 13px; color: #b0b0b0; line-height: 1.5; margin: 0; }
+
+    /* ── FOOTER ── */
+    .doc-footer {
+      margin-top: 80px;
+      padding: 32px 0 0;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .doc-footer-left { font-size: 13px; color: #888888; }
+    .doc-footer-left strong { color: #b0b0b0; }
+    .doc-footer-right { font-size: 13px; color: #888888; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 32px 24px 80px; }
+      .checklist-grid { grid-template-columns: 1fr; }
+      .earnings-grid { grid-template-columns: 1fr; }
+      .hero { padding: 40px 28px; }
+      .hero h1 { font-size: 28px; }
+    }
+    @media (max-width: 500px) {
+      .topbar-right .btn-outline { display: none; }
+      .status-cards { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<header class="topbar">
+  <div class="topbar-logo">Online<span>Job</span>Hub</div>
+  <div class="topbar-badge">User Guide v1.0</div>
+  <nav class="topbar-right">
+    <a href="#getting-started" class="btn-outline">Get Started</a>
+    <a href="#withdrawal" class="btn-primary">Withdrawals</a>
+  </nav>
+</header>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-section-label">Introduction</div>
+    <a href="#hero" class="active"><span class="num">—</span> Overview</a>
+
+    <div class="sidebar-section-label">Account</div>
+    <a href="#getting-started"><span class="num">01</span> Getting Started</a>
+    <a href="#activation"><span class="num">02</span> Account Activation</a>
+    <a href="#premium"><span class="num">03</span> Premium Membership</a>
+    <a href="#dashboard"><span class="num">04</span> Dashboard</a>
+
+    <div class="sidebar-section-label">Work & Earnings</div>
+    <a href="#tasks"><span class="num">05</span> Completing Tasks</a>
+    <a href="#review"><span class="num">06</span> Task Review</a>
+    <a href="#earnings"><span class="num">07</span> Earnings & Balance</a>
+
+    <div class="sidebar-section-label">Withdrawals</div>
+    <a href="#withdrawal"><span class="num">08</span> Withdrawal Process</a>
+    <a href="#verification"><span class="num">09</span> Verification</a>
+    <a href="#guidelines"><span class="num">10</span> Guidelines</a>
+    <a href="#delays"><span class="num">11</span> Common Delays</a>
+
+    <div class="sidebar-section-label">Platform</div>
+    <a href="#security"><span class="num">12</span> Account Security</a>
+    <a href="#policies"><span class="num">13</span> Platform Policies</a>
+    <a href="#support"><span class="num">14</span> Support</a>
+    <a href="#faq"><span class="num">15</span> FAQ</a>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- HERO -->
+    <div class="hero" id="hero">
+      <div class="hero-eyebrow">Official Member Handbook</div>
+      <h1>businesss hub <br>User Guide</h1>
+      <p>Everything you need to create your account, complete tasks, manage earnings, and withdraw funds securely.</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Version 1.0
+        </div>
+        <div class="hero-meta-item">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          15 Sections
+        </div>
+        <div class="hero-meta-item">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          All Member Types
+        </div>
+      </div>
+    </div>
+
+    <!-- 01. GETTING STARTED -->
+    <section class="section" id="getting-started">
+      <div class="section-header">
+        <span class="section-number">01</span>
+        <h2>Getting Started</h2>
+      </div>
+      <p>Joining businesss hub  is straightforward. Complete registration once and you'll have access to your member dashboard immediately.</p>
+
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body">Visit the platform homepage and select <strong>Register</strong>.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body">Fill in all required fields accurately — incomplete registrations cannot be processed.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body">Create a <strong>secure username and password</strong> you will remember.</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body">Review your details and <strong>submit</strong> the registration form.</div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-body">Sign in with your new credentials to access your dashboard.</div></div>
+      </div>
+
+      <p>You will be asked to provide:</p>
+      <ul class="bullet-list">
+        <li>Full legal name</li>
+        <li>Email address</li>
+        <li>Mobile phone number</li>
+        <li>Country of residence</li>
+        <li>Username and password</li>
+      </ul>
+
+      <div class="callout info">
+        <span class="callout-icon">ℹ️</span>
+        <div>Members are responsible for ensuring all provided information is accurate and kept up to date.</div>
+      </div>
+    </section>
+
+    <!-- 02. ACCOUNT ACTIVATION -->
+    <section class="section" id="activation">
+      <div class="section-header">
+        <span class="section-number">02</span>
+        <h2>Account Activation</h2>
+      </div>
+      <p>Some platform features are only available to activated accounts. Activation unlocks your full member experience.</p>
+
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body">Sign in and navigate to the <strong>Account Activation</strong> section on your dashboard.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body">Follow the activation instructions displayed on screen.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body">Complete the required <strong>activation payment</strong> via an approved payment method.</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body">Wait for payment verification. Your status will update to <strong>Active</strong> upon confirmation.</div></div>
+      </div>
+
+      <p>Activated members gain access to:</p>
+      <ul class="bullet-list">
+        <li>Task participation opportunities</li>
+        <li>Earning features</li>
+        <li>Withdrawal eligibility</li>
+        <li>Full dashboard functionality</li>
+        <li>Additional member resources</li>
+      </ul>
+
+      <div class="callout warning">
+        <span class="callout-icon">⚠️</span>
+        <div>Make activation payments only through <strong>official payment channels</strong> provided within the platform. Always retain your payment confirmation for reference.</div>
+      </div>
+    </section>
+
+    <!-- 03. PREMIUM MEMBERSHIP -->
+    <section class="section" id="premium">
+      <div class="section-header">
+        <span class="section-number">03</span>
+        <h2>Premium Membership</h2>
+      </div>
+      <p>Premium Membership gives you enhanced access to higher-value tasks and advanced platform features.</p>
+
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body">Log in and open the <strong>Premium Upgrade</strong> section from your dashboard.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body">Review available premium packages and select the one that suits you.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body">Complete payment through an approved method and await verification.</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body">Your account is upgraded <strong>automatically</strong> once payment is confirmed.</div></div>
+      </div>
+
+      <p>Premium members may receive:</p>
+      <ul class="bullet-list">
+        <li>Access to premium assignments with higher earning potential</li>
+        <li>Priority task access</li>
+        <li>Early access to new opportunities</li>
+        <li>Enhanced account privileges and expanded functionality</li>
+      </ul>
+
+      <div class="callout info">
+        <span class="callout-icon">ℹ️</span>
+        <div>Certain premium benefits operate within a subscription period. Monitor your renewal date and renew before expiration to avoid interruptions.</div>
+      </div>
+    </section>
+
+    <!-- 04. DASHBOARD -->
+    <section class="section" id="dashboard">
+      <div class="section-header">
+        <span class="section-number">04</span>
+        <h2>Dashboard Overview</h2>
+      </div>
+      <p>The Member Dashboard is your central control panel. Depending on your account status, you will find:</p>
+      <ul class="bullet-list">
+        <li>Account Overview</li>
+        <li>Task Center</li>
+        <li>Earnings Summary &amp; Balance Information</li>
+        <li>Premium Management</li>
+        <li>Withdrawal Requests</li>
+        <li>Notification Center</li>
+        <li>Account Settings</li>
+      </ul>
+      <div class="callout info">
+        <span class="callout-icon">ℹ️</span>
+        <div>Check your dashboard notifications regularly for important account updates and task status changes.</div>
+      </div>
+    </section>
+
+    <!-- 05. COMPLETING TASKS -->
+    <section class="section" id="tasks">
+      <div class="section-header">
+        <span class="section-number">05</span>
+        <h2>Completing Tasks</h2>
+      </div>
+      <p>businesss hub  offers a variety of task opportunities. Following instructions carefully is key to a high approval rate.</p>
+
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body">Open the <strong>Task Center</strong> from your dashboard and browse available assignments.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body">Review task requirements carefully before starting.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body">Complete all instructions accurately and submit any requested proof or supporting information.</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body">Wait for the verification and review process to complete.</div></div>
+      </div>
+
+      <p>Best practices for better approval rates:</p>
+      <ul class="bullet-list">
+        <li>Follow instructions precisely — even small deviations can cause rejection</li>
+        <li>Submit complete information including all required evidence</li>
+        <li>Avoid duplicate submissions</li>
+        <li>Meet task deadlines where applicable</li>
+      </ul>
+    </section>
+
+    <!-- 06. TASK REVIEW -->
+    <section class="section" id="review">
+      <div class="section-header">
+        <span class="section-number">06</span>
+        <h2>Task Review &amp; Verification</h2>
+      </div>
+      <p>All submitted tasks go through a review process before earnings are awarded. Reviewers evaluate submission accuracy, compliance with instructions, supporting evidence, and eligibility requirements.</p>
+
+      <div class="status-cards">
+        <div class="status-card approved">
+          <div class="badge">✓ Approved</div>
+          <p>The task meets all requirements and earnings are credited to your balance.</p>
+        </div>
+        <div class="status-card rejected">
+          <div class="badge">✗ Rejected</div>
+          <p>One or more requirements were not met. Correction or resubmission may be permitted.</p>
+        </div>
+        <div class="status-card pending">
+          <div class="badge">⏳ Pending</div>
+          <p>The task is under review and awaiting verification. Check your dashboard for updates.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07. EARNINGS -->
+    <section class="section" id="earnings">
+      <div class="section-header">
+        <span class="section-number">07</span>
+        <h2>Earnings &amp; Account Balance</h2>
+      </div>
+      <p>Successful task completion generates earnings credited to your account. Your dashboard displays the following categories:</p>
+
+      <div class="earnings-grid">
+        <div class="earning-card">
+          <div class="earning-card-label">Balance</div>
+          <div class="earning-card-title">Available Balance</div>
+          <p class="earning-card-desc">Funds that are approved and eligible for withdrawal.</p>
+        </div>
+        <div class="earning-card">
+          <div class="earning-card-label">Pending</div>
+          <div class="earning-card-title">Pending Earnings</div>
+          <p class="earning-card-desc">Earnings awaiting verification or review completion.</p>
+        </div>
+        <div class="earning-card">
+          <div class="earning-card-label">Summary</div>
+          <div class="earning-card-title">Total Earnings</div>
+          <p class="earning-card-desc">Combined earnings generated through all platform participation.</p>
+        </div>
+        <div class="earning-card">
+          <div class="earning-card-label">Activity</div>
+          <div class="earning-card-title">Completed Tasks</div>
+          <p class="earning-card-desc">Total successfully completed and reviewed assignments.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08. WITHDRAWAL PROCESS -->
+    <section class="section" id="withdrawal">
+      <div class="section-header">
+        <span class="section-number">08</span>
+        <h2>Withdrawal Process</h2>
+      </div>
+      <p>Withdrawals are available once earnings have been approved, reviewed, and credited to your available balance. Confirm the following before requesting:</p>
+      <ul class="bullet-list">
+        <li>Submitted tasks have been approved</li>
+        <li>Earnings appear in your available balance</li>
+        <li>Account information is accurate and current</li>
+        <li>Any required verification has been completed</li>
+      </ul>
+
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Access Withdrawals</strong> — Open the Withdraw section from your dashboard.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Enter Required Information</strong> — Provide your full legal name, payment recipient details, mobile money number or bank account, and the withdrawal amount.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Verify Information</strong> — Review all details carefully. Incorrect information can cause delays or failed processing.</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Submit Request</strong> — Submit for verification and processing.</div></div>
+      </div>
+    </section>
+
+    <!-- 09. WITHDRAWAL VERIFICATION -->
+    <section class="section" id="verification">
+      <div class="section-header">
+        <span class="section-number">09</span>
+        <h2>Withdrawal Verification</h2>
+      </div>
+      <p>All withdrawal requests undergo a verification process before payment is released. This may include:</p>
+      <ul class="bullet-list">
+        <li>Account validation</li>
+        <li>Balance confirmation</li>
+        <li>Identity checks where applicable</li>
+        <li>Compliance review</li>
+        <li>Payment information verification</li>
+      </ul>
+      <p>Approved requests proceed to payment processing according to platform timelines.</p>
+    </section>
+
+    <!-- 10. GUIDELINES -->
+    <section class="section" id="guidelines">
+      <div class="section-header">
+        <span class="section-number">10</span>
+        <h2>Withdrawal Guidelines</h2>
+      </div>
+      <p>Observe these guidelines to maintain efficient processing and avoid account review.</p>
+
+      <div class="checklist-grid">
+        <div class="checklist-card do">
+          <div class="checklist-card-title">✓ Always Do</div>
+          <div class="checklist-item"><span class="check-icon">✓</span>Use accurate personal information</div>
+          <div class="checklist-item"><span class="check-icon">✓</span>Submit requests only when eligible</div>
+          <div class="checklist-item"><span class="check-icon">✓</span>Ensure your account details are current</div>
+          <div class="checklist-item"><span class="check-icon">✓</span>Confirm available balance before withdrawing</div>
+          <div class="checklist-item"><span class="check-icon">✓</span>Review all information carefully before submitting</div>
+        </div>
+        <div class="checklist-card dont">
+          <div class="checklist-card-title">✗ Never Do</div>
+          <div class="checklist-item"><span class="check-icon">✗</span>Submit inaccurate payment details</div>
+          <div class="checklist-item"><span class="check-icon">✗</span>Request amounts exceeding your available balance</div>
+          <div class="checklist-item"><span class="check-icon">✗</span>Attempt withdrawals before earnings are approved</div>
+          <div class="checklist-item"><span class="check-icon">✗</span>Use unauthorized payment information</div>
+          <div class="checklist-item"><span class="check-icon">✗</span>Provide misleading information during verification</div>
+        </div>
+      </div>
+
+      <div class="callout danger">
+        <span class="callout-icon">🚫</span>
+        <div>Failure to comply with these guidelines may delay processing or result in an account review.</div>
+      </div>
+    </section>
+
+    <!-- 11. DELAYS -->
+    <section class="section" id="delays">
+      <div class="section-header">
+        <span class="section-number">11</span>
+        <h2>Common Causes of Withdrawal Delays</h2>
+      </div>
+      <p>If your withdrawal is taking longer than expected, it is likely due to one of the following reasons:</p>
+
+      <div class="delay-list">
+        <div class="delay-item"><span class="delay-dot"></span>Incorrect payment details submitted</div>
+        <div class="delay-item"><span class="delay-dot"></span>Incomplete verification information</div>
+        <div class="delay-item"><span class="delay-dot"></span>Tasks still under pending review</div>
+        <div class="delay-item"><span class="delay-dot"></span>Insufficient account balance</div>
+        <div class="delay-item"><span class="delay-dot"></span>Active security review on the account</div>
+        <div class="delay-item"><span class="delay-dot"></span>Expired premium benefits where required</div>
+        <div class="delay-item"><span class="delay-dot"></span>Temporary payment processing interruptions</div>
+      </div>
+
+      <div class="callout info">
+        <span class="callout-icon">ℹ️</span>
+        <div>Check your dashboard notifications regularly for real-time updates on your withdrawal status.</div>
+      </div>
+    </section>
+
+    <!-- 12. SECURITY -->
+    <section class="section" id="security">
+      <div class="section-header">
+        <span class="section-number">12</span>
+        <h2>Account Security</h2>
+      </div>
+      <p>businesss hub  maintains a secure platform environment. Members are responsible for protecting their own account credentials.</p>
+
+      <ul class="bullet-list">
+        <li>Create a strong, unique password</li>
+        <li>Never share your login credentials with anyone</li>
+        <li>Enable available security features on your account</li>
+        <li>Avoid using public or shared devices where possible</li>
+        <li>Always log out after each session on shared devices</li>
+        <li>Update your account information whenever it changes</li>
+      </ul>
+
+      <div class="callout danger">
+        <span class="callout-icon">🔒</span>
+        <div>Report any suspicious activity immediately through official support channels.</div>
+      </div>
+    </section>
+
+    <!-- 13. POLICIES -->
+    <section class="section" id="policies">
+      <div class="section-header">
+        <span class="section-number">13</span>
+        <h2>Platform Policies</h2>
+      </div>
+      <p>By using businesss hub , all members agree to:</p>
+      <ul class="bullet-list">
+        <li>Provide accurate information at all times</li>
+        <li>Follow platform instructions and guidelines</li>
+        <li>Respect community standards</li>
+        <li>Use the platform responsibly</li>
+        <li>Comply with all applicable policies</li>
+      </ul>
+      <div class="callout warning">
+        <span class="callout-icon">⚠️</span>
+        <div>Violation of platform rules may result in restrictions, suspension, or permanent account termination.</div>
+      </div>
+    </section>
+
+    <!-- 14. SUPPORT -->
+    <section class="section" id="support">
+      <div class="section-header">
+        <span class="section-number">14</span>
+        <h2>Support &amp; Assistance</h2>
+      </div>
+      <p>Our support team can assist with the following topics:</p>
+      <ul class="bullet-list">
+        <li>Account activation inquiries</li>
+        <li>Premium membership questions</li>
+        <li>Task submissions and status</li>
+        <li>Withdrawal requests and processing</li>
+        <li>Login and access issues</li>
+        <li>Technical difficulties</li>
+      </ul>
+      <div class="callout info">
+        <span class="callout-icon">💬</span>
+        <div>Contact support only through <strong>official channels</strong> listed on the platform. Do not engage with unofficial third-party support.</div>
+      </div>
+    </section>
+
+    <!-- 15. FAQ -->
+    <section class="section" id="faq">
+      <div class="section-header">
+        <span class="section-number">15</span>
+        <h2>Frequently Asked Questions</h2>
+      </div>
+
+      <div class="faq">
+        <div class="faq-item">
+          <div class="faq-q">When can I withdraw my earnings? <span class="arrow">▼</span></div>
+          <div class="faq-a">Withdrawals become available after your approved tasks have been successfully reviewed and credited to your available balance. Make sure all earnings show as "Available" before submitting a withdrawal request.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Why is my task still pending? <span class="arrow">▼</span></div>
+          <div class="faq-a">Some submissions require additional verification before approval can be completed. This is normal and your task status will update through dashboard notifications once review is finished.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How do I upgrade to Premium? <span class="arrow">▼</span></div>
+          <div class="faq-a">Visit the Premium section within your dashboard and follow the upgrade instructions provided. Select a package, complete the payment through an approved method, and your account will be upgraded automatically upon confirmation.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Can I use someone else's payment details? <span class="arrow">▼</span></div>
+          <div class="faq-a">Only where explicitly permitted and authorized. Submitting incorrect or unauthorized payment information may delay processing and could result in an account review.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How do I know my account is activated? <span class="arrow">▼</span></div>
+          <div class="faq-a">Your dashboard account status will clearly display as <strong>Active</strong> after successful activation verification. If it still shows inactive after payment, contact support through official channels.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="doc-footer">
+      <div class="doc-footer-left">
+        <strong>businesss hub </strong> — Official User Guide &amp; Member Handbook
+      </div>
+      <div class="doc-footer-right">© businesss hub . All Rights Reserved.</div>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Sidebar active state on scroll
+  const sections = document.querySelectorAll('.section');
+  const links = document.querySelectorAll('.sidebar a');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.sidebar a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
