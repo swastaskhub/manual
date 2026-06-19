@@ -38,7 +38,6 @@
       font-size: 15px;
     }
 
-    /* ── TOP NAV ── */
     .topbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       height: 60px;
@@ -91,10 +90,8 @@
     }
     .btn-primary:hover { background: #d4aa00; }
 
-    /* ── LAYOUT ── */
     .layout { display: flex; min-height: 100vh; padding-top: 60px; }
 
-    /* ── SIDEBAR ── */
     .sidebar {
       position: fixed;
       top: 60px; left: 0; bottom: 0;
@@ -131,7 +128,6 @@
     }
     .sidebar a.active .num { color: var(--accent); }
 
-    /* ── MAIN ── */
     .main {
       margin-left: var(--sidebar-w);
       flex: 1;
@@ -139,7 +135,6 @@
       padding: 48px 56px 100px;
     }
 
-    /* ── HERO ── */
     .hero {
       background: linear-gradient(135deg, #1a1a1a 0%, #2b2b2b 50%, #333333 100%);
       border: 1px solid #f5c800;
@@ -188,7 +183,6 @@
     }
     .hero-meta-item svg { opacity: .7; }
 
-    /* ── SECTION ── */
     .section {
       margin-bottom: 60px;
       scroll-margin-top: 84px;
@@ -217,7 +211,6 @@
     .section p { color: #b0b0b0; margin-bottom: 16px; }
     .section p:last-child { margin-bottom: 0; }
 
-    /* ── STEPS ── */
     .steps { display: flex; flex-direction: column; gap: 4px; margin: 20px 0; }
     .step {
       display: flex; gap: 16px;
@@ -239,7 +232,6 @@
     .step-body { font-size: 14px; color: #b0b0b0; padding-top: 4px; line-height: 1.6; }
     .step-body strong { color: #e8e8e8; font-weight: 600; }
 
-    /* ── BULLETS ── */
     .bullet-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin: 16px 0; }
     .bullet-list li {
       display: flex; align-items: flex-start; gap: 10px;
@@ -253,7 +245,6 @@
       margin-top: 8px;
     }
 
-    /* ── CALLOUT ── */
     .callout {
       border-radius: 10px;
       padding: 16px 20px;
@@ -266,7 +257,6 @@
     .callout.danger { background: #2a0f0f; border-left: 3px solid #f87171; color: #f87171; }
     .callout-icon { font-size: 16px; margin-top: 1px; flex-shrink: 0; }
 
-    /* ── DO / DON'T TABLE ── */
     .checklist-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -296,7 +286,6 @@
     .checklist-card.dont .checklist-item { color: #fca5a5; }
     .check-icon { flex-shrink: 0; font-size: 14px; margin-top: 1px; }
 
-    /* ── STATUS BADGES ── */
     .status-cards { display: flex; gap: 12px; margin: 16px 0; flex-wrap: wrap; }
     .status-card {
       flex: 1; min-width: 140px;
@@ -315,7 +304,6 @@
     .status-card.pending .badge { background: var(--amber-bg); color: var(--amber); }
     .status-card p { font-size: 13px; color: #b0b0b0; margin: 0; line-height: 1.5; }
 
-    /* ── FAQ ── */
     .faq { display: flex; flex-direction: column; gap: 8px; margin: 16px 0; }
     .faq-item {
       border: 1px solid var(--border);
@@ -342,7 +330,6 @@
     }
     .faq-item.open .faq-a { display: block; }
 
-    /* ── DELAYS LIST ── */
     .delay-list { display: flex; flex-direction: column; gap: 6px; margin: 16px 0; }
     .delay-item {
       display: flex; align-items: center; gap: 12px;
@@ -357,7 +344,6 @@
       background: var(--accent); flex-shrink: 0;
     }
 
-    /* ── EARNINGS GRID ── */
     .earnings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
     .earning-card {
       background: var(--surface);
@@ -369,7 +355,6 @@
     .earning-card-title { font-size: 15px; font-weight: 600; color: #e8e8e8; margin-bottom: 4px; }
     .earning-card-desc { font-size: 13px; color: #b0b0b0; line-height: 1.5; margin: 0; }
 
-    /* ── FOOTER ── */
     .doc-footer {
       margin-top: 80px;
       padding: 32px 0 0;
@@ -381,7 +366,6 @@
     .doc-footer-left strong { color: #b0b0b0; }
     .doc-footer-right { font-size: 13px; color: #888888; }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .sidebar { display: none; }
       .main { margin-left: 0; padding: 32px 24px 80px; }
@@ -399,7 +383,6 @@
 </head>
 <body>
 
-<!-- TOP NAV -->
 <header class="topbar">
   <div class="topbar-logo">Online<span>Job</span>Hub</div>
   <div class="topbar-badge">User Guide v1.0</div>
@@ -411,7 +394,6 @@
 
 <div class="layout">
 
-  <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sidebar-section-label">Introduction</div>
     <a href="#hero" class="active"><span class="num">—</span> Overview</a>
@@ -440,10 +422,8 @@
     <a href="#faq"><span class="num">15</span> FAQ</a>
   </aside>
 
-  <!-- MAIN CONTENT -->
   <main class="main">
 
-    <!-- HERO -->
     <div class="hero" id="hero">
       <div class="hero-eyebrow">Official Member Handbook</div>
       <h1>businesss hub <br>User Guide</h1>
@@ -464,7 +444,6 @@
       </div>
     </div>
 
-    <!-- 01. GETTING STARTED -->
     <section class="section" id="getting-started">
       <div class="section-header">
         <span class="section-number">01</span>
@@ -495,7 +474,6 @@
       </div>
     </section>
 
-    <!-- 02. ACCOUNT ACTIVATION -->
     <section class="section" id="activation">
       <div class="section-header">
         <span class="section-number">02</span>
@@ -506,7 +484,7 @@
       <div class="steps">
         <div class="step"><div class="step-num">1</div><div class="step-body">Sign in and navigate to the <strong>Account Activation</strong> section on your dashboard.</div></div>
         <div class="step"><div class="step-num">2</div><div class="step-body">Follow the activation instructions displayed on screen.</div></div>
-        <div class="step"><div class="step-num">3</div><div class="step-body">Complete the required <strong>activation payment</strong> via an approved payment method.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body">Complete the required <strong>activation payment of USD 5</strong> via an approved payment method.</div></div>
         <div class="step"><div class="step-num">4</div><div class="step-body">Wait for payment verification. Your status will update to <strong>Active</strong> upon confirmation.</div></div>
       </div>
 
@@ -523,9 +501,12 @@
         <span class="callout-icon">⚠️</span>
         <div>Make activation payments only through <strong>official payment channels</strong> provided within the platform. Always retain your payment confirmation for reference.</div>
       </div>
+      <div class="callout danger">
+        <span class="callout-icon">🚫</span>
+        <div>Clients cannot withdraw earnings until their account has been activated.</div>
+      </div>
     </section>
 
-    <!-- 03. PREMIUM MEMBERSHIP -->
     <section class="section" id="premium">
       <div class="section-header">
         <span class="section-number">03</span>
@@ -554,7 +535,6 @@
       </div>
     </section>
 
-    <!-- 04. DASHBOARD -->
     <section class="section" id="dashboard">
       <div class="section-header">
         <span class="section-number">04</span>
@@ -576,7 +556,6 @@
       </div>
     </section>
 
-    <!-- 05. COMPLETING TASKS -->
     <section class="section" id="tasks">
       <div class="section-header">
         <span class="section-number">05</span>
@@ -598,9 +577,13 @@
         <li>Avoid duplicate submissions</li>
         <li>Meet task deadlines where applicable</li>
       </ul>
+
+      <div class="callout info">
+        <span class="callout-icon">⏱️</span>
+        <div>Only <strong>one task</strong> can be worked on at a time. After you complete a task, you must wait <strong>12 hours</strong> before a new task becomes available to choose.</div>
+      </div>
     </section>
 
-    <!-- 06. TASK REVIEW -->
     <section class="section" id="review">
       <div class="section-header">
         <span class="section-number">06</span>
@@ -624,7 +607,6 @@
       </div>
     </section>
 
-    <!-- 07. EARNINGS -->
     <section class="section" id="earnings">
       <div class="section-header">
         <span class="section-number">07</span>
@@ -656,29 +638,32 @@
       </div>
     </section>
 
-    <!-- 08. WITHDRAWAL PROCESS -->
     <section class="section" id="withdrawal">
       <div class="section-header">
         <span class="section-number">08</span>
         <h2>Withdrawal Process</h2>
       </div>
-      <p>Withdrawals are available once earnings have been approved, reviewed, and credited to your available balance. Confirm the following before requesting:</p>
+      <p>Withdrawals are available once earnings have been approved, reviewed, and credited to your available balance, and once your account has been activated. Confirm the following before requesting:</p>
       <ul class="bullet-list">
+        <li>Your account is active</li>
         <li>Submitted tasks have been approved</li>
         <li>Earnings appear in your available balance</li>
-        <li>Account information is accurate and current</li>
-        <li>Any required verification has been completed</li>
+        <li>Your registered phone number and National ID number are accurate and current</li>
       </ul>
 
       <div class="steps">
         <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Access Withdrawals</strong> — Open the Withdraw section from your dashboard.</div></div>
-        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Enter Required Information</strong> — Provide your full legal name, payment recipient details, mobile money number or bank account, and the withdrawal amount.</div></div>
-        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Verify Information</strong> — Review all details carefully. Incorrect information can cause delays or failed processing.</div></div>
-        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Submit Request</strong> — Submit for verification and processing.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Enter Required Information</strong> — Provide your registered <strong>phone number</strong> and <strong>National ID number</strong>, exactly as used during registration, along with the withdrawal amount.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Verify Information</strong> — Review your phone number and ID number carefully. The name linked to both must match your account name, since the payout goes directly to that M-Pesa line.</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Submit Request</strong> — Once submitted, your withdrawal is processed promptly and paid directly to your M-Pesa.</div></div>
+      </div>
+
+      <div class="callout warning">
+        <span class="callout-icon">⚠️</span>
+        <div>Your phone number and ID number must belong to the same person and match your registered account name. Mismatched details will delay or block your payout.</div>
       </div>
     </section>
 
-    <!-- 09. WITHDRAWAL VERIFICATION -->
     <section class="section" id="verification">
       <div class="section-header">
         <span class="section-number">09</span>
@@ -695,7 +680,6 @@
       <p>Approved requests proceed to payment processing according to platform timelines.</p>
     </section>
 
-    <!-- 10. GUIDELINES -->
     <section class="section" id="guidelines">
       <div class="section-header">
         <span class="section-number">10</span>
@@ -728,7 +712,6 @@
       </div>
     </section>
 
-    <!-- 11. DELAYS -->
     <section class="section" id="delays">
       <div class="section-header">
         <span class="section-number">11</span>
@@ -752,7 +735,6 @@
       </div>
     </section>
 
-    <!-- 12. SECURITY -->
     <section class="section" id="security">
       <div class="section-header">
         <span class="section-number">12</span>
@@ -775,7 +757,6 @@
       </div>
     </section>
 
-    <!-- 13. POLICIES -->
     <section class="section" id="policies">
       <div class="section-header">
         <span class="section-number">13</span>
@@ -795,7 +776,6 @@
       </div>
     </section>
 
-    <!-- 14. SUPPORT -->
     <section class="section" id="support">
       <div class="section-header">
         <span class="section-number">14</span>
@@ -814,9 +794,12 @@
         <span class="callout-icon">💬</span>
         <div>Contact support only through <strong>official channels</strong> listed on the platform. Do not engage with unofficial third-party support.</div>
       </div>
+      <div class="callout danger">
+        <span class="callout-icon">🚫</span>
+        <div>Rude or disrespectful communication with customer care puts your account at risk of suspension. See the <strong>Customer Conduct &amp; Suspension Policy</strong> for full details.</div>
+      </div>
     </section>
 
-    <!-- 15. FAQ -->
     <section class="section" id="faq">
       <div class="section-header">
         <span class="section-number">15</span>
@@ -826,7 +809,7 @@
       <div class="faq">
         <div class="faq-item">
           <div class="faq-q">When can I withdraw my earnings? <span class="arrow">▼</span></div>
-          <div class="faq-a">Withdrawals become available after your approved tasks have been successfully reviewed and credited to your available balance. Make sure all earnings show as "Available" before submitting a withdrawal request.</div>
+          <div class="faq-a">Withdrawals become available once your account is active and your approved tasks have been credited to your available balance. Payouts are made directly to your registered M-Pesa number after you've entered your phone number and National ID number.</div>
         </div>
         <div class="faq-item">
           <div class="faq-q">Why is my task still pending? <span class="arrow">▼</span></div>
@@ -838,7 +821,11 @@
         </div>
         <div class="faq-item">
           <div class="faq-q">Can I use someone else's payment details? <span class="arrow">▼</span></div>
-          <div class="faq-a">Only where explicitly permitted and authorized. Submitting incorrect or unauthorized payment information may delay processing and could result in an account review.</div>
+          <div class="faq-a">No. The phone number and National ID number used for withdrawal must belong to you and match your account name exactly, since funds are paid directly to that M-Pesa line.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How many tasks can I do at once? <span class="arrow">▼</span></div>
+          <div class="faq-a">Only one task at a time. Once you complete it, you'll need to wait 12 hours before a new task becomes available to pick.</div>
         </div>
         <div class="faq-item">
           <div class="faq-q">How do I know my account is activated? <span class="arrow">▼</span></div>
@@ -847,7 +834,6 @@
       </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="doc-footer">
       <div class="doc-footer-left">
         <strong>businesss hub </strong> — Official User Guide &amp; Member Handbook
@@ -859,7 +845,6 @@
 </div>
 
 <script>
-  // FAQ accordion
   document.querySelectorAll('.faq-q').forEach(q => {
     q.addEventListener('click', () => {
       const item = q.parentElement;
@@ -869,7 +854,6 @@
     });
   });
 
-  // Sidebar active state on scroll
   const sections = document.querySelectorAll('.section');
   const links = document.querySelectorAll('.sidebar a');
 
