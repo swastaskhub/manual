@@ -304,6 +304,69 @@
     .status-card.pending .badge { background: var(--amber-bg); color: var(--amber); }
     .status-card p { font-size: 13px; color: #b0b0b0; margin: 0; line-height: 1.5; }
 
+    /* Task flow diagram */
+    .task-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 24px 0;
+      position: relative;
+    }
+    .task-flow-step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 16px 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0;
+      position: relative;
+    }
+    .task-flow-step:first-child { border-radius: 10px 10px 0 0; }
+    .task-flow-step:last-child { border-radius: 0 0 10px 10px; }
+    .task-flow-step:not(:last-child) { border-bottom: none; }
+    .task-flow-step:not(:last-child)::after {
+      content: '↓';
+      position: absolute;
+      bottom: -14px;
+      left: 28px;
+      font-size: 14px;
+      color: var(--accent);
+      z-index: 1;
+      background: var(--bg);
+      width: 20px;
+      text-align: center;
+      line-height: 1;
+    }
+    .task-flow-icon {
+      min-width: 36px; height: 36px;
+      border-radius: 8px;
+      background: var(--accent-bg);
+      color: var(--accent);
+      font-size: 16px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .task-flow-body { font-size: 14px; color: #b0b0b0; line-height: 1.6; padding-top: 2px; }
+    .task-flow-body strong { color: #e8e8e8; font-weight: 600; display: block; margin-bottom: 2px; }
+    .task-flow-body span { font-size: 13px; }
+
+    /* Correction flow highlight */
+    .correction-box {
+      background: #1e2a1e;
+      border: 1px solid #2d4a2d;
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin: 16px 0;
+    }
+    .correction-box-title {
+      font-size: 12px; font-weight: 700; letter-spacing: .8px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+    .correction-box p { font-size: 14px; color: #86efac; line-height: 1.6; margin-bottom: 0; }
+
     .faq { display: flex; flex-direction: column; gap: 8px; margin: 16px 0; }
     .faq-item {
       border: 1px solid var(--border);
@@ -384,7 +447,7 @@
 <body>
 
 <header class="topbar">
-  <div class="topbar-logo">Online<span>Job</span>Hub</div>
+  <div class="topbar-logo">Business<span>Hub</span></div>
   <div class="topbar-badge">User Guide v1.0</div>
   <nav class="topbar-right">
     <a href="#getting-started" class="btn-outline">Get Started</a>
@@ -406,27 +469,29 @@
 
     <div class="sidebar-section-label">Work & Earnings</div>
     <a href="#tasks"><span class="num">05</span> Completing Tasks</a>
-    <a href="#review"><span class="num">06</span> Task Review</a>
-    <a href="#earnings"><span class="num">07</span> Earnings & Balance</a>
+    <a href="#submission"><span class="num">06</span> Submitting Your Work</a>
+    <a href="#review"><span class="num">07</span> Task Review</a>
+    <a href="#earnings"><span class="num">08</span> Earnings & Balance</a>
 
     <div class="sidebar-section-label">Withdrawals</div>
-    <a href="#withdrawal"><span class="num">08</span> Withdrawal Process</a>
-    <a href="#verification"><span class="num">09</span> Verification</a>
-    <a href="#guidelines"><span class="num">10</span> Guidelines</a>
-    <a href="#delays"><span class="num">11</span> Common Delays</a>
+    <a href="#withdrawal"><span class="num">09</span> Withdrawal (M-Pesa)</a>
+    <a href="#withdrawal-international"><span class="num">09b</span> Withdrawal (International)</a>
+    <a href="#verification"><span class="num">10</span> Verification</a>
+    <a href="#guidelines"><span class="num">11</span> Guidelines</a>
+    <a href="#delays"><span class="num">12</span> Common Delays</a>
 
     <div class="sidebar-section-label">Platform</div>
-    <a href="#security"><span class="num">12</span> Account Security</a>
-    <a href="#policies"><span class="num">13</span> Platform Policies</a>
-    <a href="#support"><span class="num">14</span> Support</a>
-    <a href="#faq"><span class="num">15</span> FAQ</a>
+    <a href="#security"><span class="num">13</span> Account Security</a>
+    <a href="#policies"><span class="num">14</span> Platform Policies</a>
+    <a href="#support"><span class="num">15</span> Support</a>
+    <a href="#faq"><span class="num">16</span> FAQ</a>
   </aside>
 
   <main class="main">
 
     <div class="hero" id="hero">
       <div class="hero-eyebrow">Official Member Handbook</div>
-      <h1>businesss hub <br>User Guide</h1>
+      <h1>Business Hub<br>User Guide</h1>
       <p>Everything you need to create your account, complete tasks, manage earnings, and withdraw funds securely.</p>
       <div class="hero-meta">
         <div class="hero-meta-item">
@@ -435,7 +500,7 @@
         </div>
         <div class="hero-meta-item">
           <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          15 Sections
+          16 Sections
         </div>
         <div class="hero-meta-item">
           <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
@@ -449,7 +514,7 @@
         <span class="section-number">01</span>
         <h2>Getting Started</h2>
       </div>
-      <p>Joining businesss hub  is straightforward. Complete registration once and you'll have access to your member dashboard immediately.</p>
+      <p>Joining Business Hub is straightforward. Complete registration once and you'll have access to your member dashboard immediately.</p>
 
       <div class="steps">
         <div class="step"><div class="step-num">1</div><div class="step-body">Visit the platform homepage and select <strong>Register</strong>.</div></div>
@@ -503,7 +568,7 @@
       </div>
       <div class="callout danger">
         <span class="callout-icon">🚫</span>
-        <div>Clients cannot withdraw earnings until their account has been activated.</div>
+        <div>Members cannot withdraw earnings until their account has been activated.</div>
       </div>
     </section>
 
@@ -561,55 +626,123 @@
         <span class="section-number">05</span>
         <h2>Completing Tasks</h2>
       </div>
-      <p>businesss hub  offers a variety of task opportunities. Following instructions carefully is key to a high approval rate.</p>
+      <p>Business Hub offers a variety of task types — including writing, email replies, research, review questionnaires, and more. Each task must be completed fully and carefully before submission.</p>
 
       <div class="steps">
         <div class="step"><div class="step-num">1</div><div class="step-body">Open the <strong>Task Center</strong> from your dashboard and browse available assignments.</div></div>
-        <div class="step"><div class="step-num">2</div><div class="step-body">Review task requirements carefully before starting.</div></div>
-        <div class="step"><div class="step-num">3</div><div class="step-body">Complete all instructions accurately and submit any requested proof or supporting information.</div></div>
-        <div class="step"><div class="step-num">4</div><div class="step-body">Wait for the verification and review process to complete.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body">Select a task to open it. You will see two options: <strong>View</strong> and <strong>Submit</strong>. Click <strong>View</strong> to read the full task brief and instructions.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body">Work on the assignment as instructed. This may include writing a response, completing a questionnaire, conducting research, or drafting an email reply — depending on the task type.</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body">Once your work is ready, click <strong>Submit</strong> from your dashboard. This will direct you to the designated submission email address.</div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-body">Send your completed work to that email address. You may attach it as a <strong>document</strong> or paste the content directly into the email body.</div></div>
+      </div>
+
+      <div class="callout danger">
+        <span class="callout-icon">🚫</span>
+        <div><strong>Images are not accepted.</strong> Submit your work as a typed document or pasted text only. Submissions sent as images or screenshots will not be processed.</div>
       </div>
 
       <p>Best practices for better approval rates:</p>
       <ul class="bullet-list">
         <li>Follow instructions precisely — even small deviations can cause rejection</li>
-        <li>Submit complete information including all required evidence</li>
+        <li>Submit complete information including all required content</li>
         <li>Avoid duplicate submissions</li>
         <li>Meet task deadlines where applicable</li>
+        <li>Always send work as a document or typed text, never as an image</li>
       </ul>
 
       <div class="callout info">
         <span class="callout-icon">⏱️</span>
-        <div>Only <strong>one task</strong> can be worked on at a time. After you complete a task, you must wait <strong>12 hours</strong> before a new task becomes available to choose.</div>
+        <div>Only <strong>one task</strong> can be worked on at a time. After you submit a task, you must wait for the review outcome before a new task becomes available.</div>
+      </div>
+    </section>
+
+    <section class="section" id="submission">
+      <div class="section-header">
+        <span class="section-number">06</span>
+        <h2>Submitting Your Work</h2>
+      </div>
+      <p>After completing your task, follow the submission process below to get your work reviewed and your earnings released.</p>
+
+      <div class="task-flow">
+        <div class="task-flow-step">
+          <div class="task-flow-icon">✍️</div>
+          <div class="task-flow-body">
+            <strong>Complete the Task</strong>
+            <span>Finish the assignment in full according to the task instructions — writing, research, questionnaire, or email reply.</span>
+          </div>
+        </div>
+        <div class="task-flow-step">
+          <div class="task-flow-icon">📤</div>
+          <div class="task-flow-body">
+            <strong>Click Submit on Your Dashboard</strong>
+            <span>From the task on your dashboard, click the <strong>Submit</strong> button. You will be directed to the official submission email address.</span>
+          </div>
+        </div>
+        <div class="task-flow-step">
+          <div class="task-flow-icon">📧</div>
+          <div class="task-flow-body">
+            <strong>Send Your Work via Email</strong>
+            <span>Compose an email to the address shown and either paste your completed work into the email body, or attach it as a document. <strong>Images are not accepted.</strong></span>
+          </div>
+        </div>
+        <div class="task-flow-step">
+          <div class="task-flow-icon">🔍</div>
+          <div class="task-flow-body">
+            <strong>Wait for Review (30 min – 1 hour)</strong>
+            <span>Once your submission is received, our review team will assess it. Review typically takes between <strong>30 minutes and 1 hour</strong>. Keep an eye on your email during this time.</span>
+          </div>
+        </div>
+        <div class="task-flow-step">
+          <div class="task-flow-icon">✅</div>
+          <div class="task-flow-body">
+            <strong>Receive Your Review Outcome</strong>
+            <span>The result will be sent to your email. If approved, you will be prompted to initiate your withdrawal. If corrections are needed, your work will be returned to you.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="correction-box">
+        <div class="correction-box-title">🔁 If Corrections Are Required</div>
+        <p>If your submission does not meet the required standard, it will be sent back to your email with specific correction notes. Review the feedback carefully, make the necessary corrections, and resubmit the corrected work to the same email address. Your work will then go through the review process again. Once it passes, you will be prompted to withdraw your earnings.</p>
+      </div>
+
+      <div class="callout warning">
+        <span class="callout-icon">📬</span>
+        <div><strong>Monitor your email closely after every submission.</strong> Review results and correction requests are sent directly to your registered email address. Delays in responding to correction requests may affect your earnings timeline.</div>
       </div>
     </section>
 
     <section class="section" id="review">
       <div class="section-header">
-        <span class="section-number">06</span>
+        <span class="section-number">07</span>
         <h2>Task Review &amp; Verification</h2>
       </div>
-      <p>All submitted tasks go through a review process before earnings are awarded. Reviewers evaluate submission accuracy, compliance with instructions, supporting evidence, and eligibility requirements.</p>
+      <p>All submitted tasks go through a review process before earnings are awarded. Reviewers evaluate submission accuracy, compliance with instructions, content quality, and eligibility requirements.</p>
 
       <div class="status-cards">
         <div class="status-card approved">
           <div class="badge">✓ Approved</div>
-          <p>The task meets all requirements and earnings are credited to your balance.</p>
+          <p>Your work meets all requirements. You will be notified via email to proceed with your withdrawal.</p>
         </div>
         <div class="status-card rejected">
-          <div class="badge">✗ Rejected</div>
-          <p>One or more requirements were not met. Correction or resubmission may be permitted.</p>
+          <div class="badge">↩ Needs Correction</div>
+          <p>Your submission has been returned with correction notes. Make the required changes and resubmit.</p>
         </div>
         <div class="status-card pending">
-          <div class="badge">⏳ Pending</div>
-          <p>The task is under review and awaiting verification. Check your dashboard for updates.</p>
+          <div class="badge">⏳ Under Review</div>
+          <p>Your work has been received and is currently being assessed. Expect a response within 30–60 minutes.</p>
         </div>
+      </div>
+
+      <div class="callout info">
+        <span class="callout-icon">ℹ️</span>
+        <div>Review outcomes are communicated via email, not the dashboard alone. Ensure your registered email address is active and accessible.</div>
       </div>
     </section>
 
     <section class="section" id="earnings">
       <div class="section-header">
-        <span class="section-number">07</span>
+        <span class="section-number">08</span>
         <h2>Earnings &amp; Account Balance</h2>
       </div>
       <p>Successful task completion generates earnings credited to your account. Your dashboard displays the following categories:</p>
@@ -623,7 +756,7 @@
         <div class="earning-card">
           <div class="earning-card-label">Pending</div>
           <div class="earning-card-title">Pending Earnings</div>
-          <p class="earning-card-desc">Earnings awaiting verification or review completion.</p>
+          <p class="earning-card-desc">Earnings awaiting review completion.</p>
         </div>
         <div class="earning-card">
           <div class="earning-card-label">Summary</div>
@@ -640,22 +773,23 @@
 
     <section class="section" id="withdrawal">
       <div class="section-header">
-        <span class="section-number">08</span>
+        <span class="section-number">09</span>
         <h2>Withdrawal Process</h2>
       </div>
-      <p>Withdrawals are available once earnings have been approved, reviewed, and credited to your available balance, and once your account has been activated. Confirm the following before requesting:</p>
+      <p>Withdrawals are prompted via email once your submitted task has been reviewed and approved. Before initiating a withdrawal, confirm the following:</p>
       <ul class="bullet-list">
         <li>Your account is active</li>
-        <li>Submitted tasks have been approved</li>
+        <li>You have received an approval email for your submitted task</li>
         <li>Earnings appear in your available balance</li>
         <li>Your registered phone number and National ID number are accurate and current</li>
       </ul>
 
       <div class="steps">
-        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Access Withdrawals</strong> — Open the Withdraw section from your dashboard.</div></div>
-        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Enter Required Information</strong> — Provide your registered <strong>phone number</strong> and <strong>National ID number</strong>, exactly as used during registration, along with the withdrawal amount.</div></div>
-        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Verify Information</strong> — Review your phone number and ID number carefully. The name linked to both must match your account name, since the payout goes directly to that M-Pesa line.</div></div>
-        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Submit Request</strong> — Once submitted, your withdrawal is processed promptly and paid directly to your M-Pesa.</div></div>
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Receive Approval Email</strong> — After your task is reviewed and approved, you will be prompted via email to initiate your withdrawal.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Access Withdrawals</strong> — Open the Withdraw section from your dashboard.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Enter Required Information</strong> — Provide your registered <strong>phone number</strong> and <strong>National ID number</strong>, exactly as used during registration, along with the withdrawal amount.</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Verify Information</strong> — Review your phone number and ID number carefully. The name linked to both must match your account name, since the payout goes directly to that M-Pesa line.</div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-body"><strong>Submit Request</strong> — Once submitted, your withdrawal is processed promptly and paid directly to your M-Pesa.</div></div>
       </div>
 
       <div class="callout warning">
@@ -664,9 +798,35 @@
       </div>
     </section>
 
+    <section class="section" id="withdrawal-international">
+      <div class="section-header">
+        <span class="section-number">09b</span>
+        <h2>Withdrawal &amp; International Clients</h2>
+      </div>
+      <p>If you are based outside Kenya or do not have access to M-Pesa, you can withdraw your earnings via <strong>Bank Transfer (Wire)</strong>. The withdrawal option is available directly from your dashboard sidebar.</p>
+
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Open the Sidebar</strong> &mdash; From your dashboard, click the sidebar menu. You will see a withdrawal option listed there.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Select Bank Transfer (Wire)</strong> &mdash; Click the withdrawal option and choose <strong>Bank Transfer (Wire)</strong> as your payment method.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Enter Your Bank Details</strong> &mdash; Provide your full bank account name, account number, bank name, SWIFT/BIC code, and country. Ensure all details are accurate &mdash; errors will delay your payment.</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Enter the Withdrawal Amount</strong> &mdash; Confirm the amount you wish to withdraw. It must not exceed your available balance.</div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-body"><strong>Submit Your Request</strong> &mdash; Review all details carefully, then submit. Your request will go through verification before the transfer is processed.</div></div>
+      </div>
+
+      <div class="callout info">
+        <span class="callout-icon">🌍</span>
+        <div>International bank transfers may take longer to process than M-Pesa payouts due to inter-bank clearing times. Ensure your bank details are fully correct before submitting &mdash; incorrect SWIFT codes or account numbers will cause significant delays.</div>
+      </div>
+
+      <div class="callout warning">
+        <span class="callout-icon">⚠️</span>
+        <div>The bank account name must match the name registered on your Business Hub account. Transfers to mismatched or third-party accounts are not permitted.</div>
+      </div>
+    </section>
+
     <section class="section" id="verification">
       <div class="section-header">
-        <span class="section-number">09</span>
+        <span class="section-number">10</span>
         <h2>Withdrawal Verification</h2>
       </div>
       <p>All withdrawal requests undergo a verification process before payment is released. This may include:</p>
@@ -682,7 +842,7 @@
 
     <section class="section" id="guidelines">
       <div class="section-header">
-        <span class="section-number">10</span>
+        <span class="section-number">11</span>
         <h2>Withdrawal Guidelines</h2>
       </div>
       <p>Observe these guidelines to maintain efficient processing and avoid account review.</p>
@@ -700,7 +860,7 @@
           <div class="checklist-card-title">✗ Never Do</div>
           <div class="checklist-item"><span class="check-icon">✗</span>Submit inaccurate payment details</div>
           <div class="checklist-item"><span class="check-icon">✗</span>Request amounts exceeding your available balance</div>
-          <div class="checklist-item"><span class="check-icon">✗</span>Attempt withdrawals before earnings are approved</div>
+          <div class="checklist-item"><span class="check-icon">✗</span>Attempt withdrawals before your task is approved</div>
           <div class="checklist-item"><span class="check-icon">✗</span>Use unauthorized payment information</div>
           <div class="checklist-item"><span class="check-icon">✗</span>Provide misleading information during verification</div>
         </div>
@@ -714,7 +874,7 @@
 
     <section class="section" id="delays">
       <div class="section-header">
-        <span class="section-number">11</span>
+        <span class="section-number">12</span>
         <h2>Common Causes of Withdrawal Delays</h2>
       </div>
       <p>If your withdrawal is taking longer than expected, it is likely due to one of the following reasons:</p>
@@ -722,7 +882,8 @@
       <div class="delay-list">
         <div class="delay-item"><span class="delay-dot"></span>Incorrect payment details submitted</div>
         <div class="delay-item"><span class="delay-dot"></span>Incomplete verification information</div>
-        <div class="delay-item"><span class="delay-dot"></span>Tasks still under pending review</div>
+        <div class="delay-item"><span class="delay-dot"></span>Task submission still under review</div>
+        <div class="delay-item"><span class="delay-dot"></span>Correction request not yet responded to</div>
         <div class="delay-item"><span class="delay-dot"></span>Insufficient account balance</div>
         <div class="delay-item"><span class="delay-dot"></span>Active security review on the account</div>
         <div class="delay-item"><span class="delay-dot"></span>Expired premium benefits where required</div>
@@ -731,16 +892,16 @@
 
       <div class="callout info">
         <span class="callout-icon">ℹ️</span>
-        <div>Check your dashboard notifications regularly for real-time updates on your withdrawal status.</div>
+        <div>Check both your dashboard notifications and your email regularly for real-time updates on your task review and withdrawal status.</div>
       </div>
     </section>
 
     <section class="section" id="security">
       <div class="section-header">
-        <span class="section-number">12</span>
+        <span class="section-number">13</span>
         <h2>Account Security</h2>
       </div>
-      <p>businesss hub  maintains a secure platform environment. Members are responsible for protecting their own account credentials.</p>
+      <p>Business Hub maintains a secure platform environment. Members are responsible for protecting their own account credentials.</p>
 
       <ul class="bullet-list">
         <li>Create a strong, unique password</li>
@@ -759,10 +920,10 @@
 
     <section class="section" id="policies">
       <div class="section-header">
-        <span class="section-number">13</span>
+        <span class="section-number">14</span>
         <h2>Platform Policies</h2>
       </div>
-      <p>By using businesss hub , all members agree to:</p>
+      <p>By using Business Hub, all members agree to:</p>
       <ul class="bullet-list">
         <li>Provide accurate information at all times</li>
         <li>Follow platform instructions and guidelines</li>
@@ -778,14 +939,15 @@
 
     <section class="section" id="support">
       <div class="section-header">
-        <span class="section-number">14</span>
+        <span class="section-number">15</span>
         <h2>Support &amp; Assistance</h2>
       </div>
       <p>Our support team can assist with the following topics:</p>
       <ul class="bullet-list">
         <li>Account activation inquiries</li>
         <li>Premium membership questions</li>
-        <li>Task submissions and status</li>
+        <li>Task submissions and review status</li>
+        <li>Correction requests and resubmissions</li>
         <li>Withdrawal requests and processing</li>
         <li>Login and access issues</li>
         <li>Technical difficulties</li>
@@ -802,30 +964,42 @@
 
     <section class="section" id="faq">
       <div class="section-header">
-        <span class="section-number">15</span>
+        <span class="section-number">16</span>
         <h2>Frequently Asked Questions</h2>
       </div>
 
       <div class="faq">
         <div class="faq-item">
-          <div class="faq-q">When can I withdraw my earnings? <span class="arrow">▼</span></div>
-          <div class="faq-a">Withdrawals become available once your account is active and your approved tasks have been credited to your available balance. Payouts are made directly to your registered M-Pesa number after you've entered your phone number and National ID number.</div>
+          <div class="faq-q">How do I submit my completed task? <span class="arrow">▼</span></div>
+          <div class="faq-a">Once you have finished working on your task, click the <strong>Submit</strong> button on your dashboard. You will be directed to a designated email address. Send your completed work to that email either by pasting it in the email body or attaching it as a document. Images are not accepted.</div>
         </div>
         <div class="faq-item">
-          <div class="faq-q">Why is my task still pending? <span class="arrow">▼</span></div>
-          <div class="faq-a">Some submissions require additional verification before approval can be completed. This is normal and your task status will update through dashboard notifications once review is finished.</div>
+          <div class="faq-q">How long does the review take after I submit? <span class="arrow">▼</span></div>
+          <div class="faq-a">Review typically takes between <strong>30 minutes and 1 hour</strong> after your work is received via email. Stay by your email during this window, as the outcome — whether approval or a correction request — will be sent there.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What happens if my work is sent back for corrections? <span class="arrow">▼</span></div>
+          <div class="faq-a">You will receive an email with the specific corrections required. Make the necessary changes to your work and resubmit it to the same email address. The review team will assess it again, and once it is approved you will be prompted to initiate your withdrawal.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">When can I withdraw my earnings? <span class="arrow">▼</span></div>
+          <div class="faq-a">Withdrawals become available once your account is active and your submitted task has been reviewed and approved. You will receive an email notification prompting you to initiate the withdrawal. Payouts are made directly to your registered M-Pesa number.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Can I send my work as a photo or screenshot? <span class="arrow">▼</span></div>
+          <div class="faq-a">No. The platform does not accept image-based submissions. You must submit your work as typed text in the email body or as an attached document (e.g. PDF or Word file).</div>
         </div>
         <div class="faq-item">
           <div class="faq-q">How do I upgrade to Premium? <span class="arrow">▼</span></div>
           <div class="faq-a">Visit the Premium section within your dashboard and follow the upgrade instructions provided. Select a package, complete the payment through an approved method, and your account will be upgraded automatically upon confirmation.</div>
         </div>
         <div class="faq-item">
+        <div class="faq-item">
+          <div class="faq-q">I am an international client without M-Pesa. How do I withdraw? <span class="arrow">&#9660;</span></div>
+          <div class="faq-a">International members who do not have M-Pesa can withdraw via <strong>Bank Transfer (Wire)</strong>. Open your dashboard sidebar, click the withdrawal option, and select Bank Transfer as your payment method. You will be asked to provide your bank account name, account number, bank name, SWIFT/BIC code, and country. The account name must match your registered Business Hub name. Transfers may take longer than M-Pesa payouts due to inter-bank processing times.</div>
+        </div>
           <div class="faq-q">Can I use someone else's payment details? <span class="arrow">▼</span></div>
           <div class="faq-a">No. The phone number and National ID number used for withdrawal must belong to you and match your account name exactly, since funds are paid directly to that M-Pesa line.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q">How many tasks can I do at once? <span class="arrow">▼</span></div>
-          <div class="faq-a">Only one task at a time. Once you complete it, you'll need to wait 12 hours before a new task becomes available to pick.</div>
         </div>
         <div class="faq-item">
           <div class="faq-q">How do I know my account is activated? <span class="arrow">▼</span></div>
@@ -836,9 +1010,9 @@
 
     <footer class="doc-footer">
       <div class="doc-footer-left">
-        <strong>businesss hub </strong> — Official User Guide &amp; Member Handbook
+        <strong>Business Hub</strong> — Official User Guide &amp; Member Handbook
       </div>
-      <div class="doc-footer-right">© businesss hub . All Rights Reserved.</div>
+      <div class="doc-footer-right">© Business Hub. All Rights Reserved.</div>
     </footer>
 
   </main>
